@@ -19,7 +19,7 @@ uint8ArrayToHex(bytes: Uint8Array): string;
 
 __basic__  
 ```ts  
-import { crc32 } from "https://raw.githubusercontent.com/deno-library/crc32/master/mod.ts";
+import { crc32 } from "https://deno.land/x/crc32/mod.ts";
 
 const str = "deno";
 const bytes = new TextEncoder().encode(str);
@@ -31,7 +31,7 @@ assert(crc32(bytes) === "fd6f8c63");
 __Crc32Stream__  
 Used to calculate src32 value for large file
 ```ts  
-import { Crc32Stream } from "https://raw.githubusercontent.com/deno-library/crc32/master/mod.ts";
+import { Crc32Stream } from "https://deno.land/x/crc32/mod.ts";
 
 const crc32Stream = new Crc32Stream();
 crc32Stream.append("d"); // 98dd4acc  === crc32("d")
@@ -59,7 +59,7 @@ assertEquals(crc32Stream.crc32, crc32_deno);
 import {
   hexToUint8Array,
   uint8ArrayToHex,
-} from "https://raw.githubusercontent.com/deno-library/crc32/master/mod.ts";
+} from "https://deno.land/x/crc32/mod.ts";
 
 const crc32_deno = "fd6f8c63";
 
