@@ -24,14 +24,18 @@ import { crc32 } from "https://deno.land/x/crc32/mod.ts";
 const str = "deno";
 const bytes = new TextEncoder().encode(str);
 
-assert(crc32(str) === "fd6f8c63");
-assert(crc32(bytes) === "fd6f8c63");
+const crc32_deno = "fd6f8c63";
+
+assert(crc32(str) === crc32_deno);
+assert(crc32(bytes) === crc32_deno);
 ```  
 
 __Crc32Stream__  
 Used to calculate src32 value for large file
 ```ts  
 import { Crc32Stream } from "https://deno.land/x/crc32/mod.ts";
+
+const crc32_deno = "fd6f8c63";
 
 const crc32Stream = new Crc32Stream();
 crc32Stream.append("d"); // 98dd4acc  === crc32("d")
