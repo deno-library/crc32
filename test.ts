@@ -11,12 +11,15 @@ import {
 } from "./mod.ts";
 
 const str = "deno";
+const str2 = "33";
 const bytes = new TextEncoder().encode(str);
 const crc32_deno = "fd6f8c63";
+const crc32_33 = "0a6216d9"; // Crc with a leading zero
 
 Deno.test("crc32", () => {
   assertEquals(crc32(str), crc32_deno);
   assertEquals(crc32(bytes), crc32_deno);
+  assertEquals(crc32(str2), crc32_33);
 });
 
 Deno.test("Crc32Stream", () => {
