@@ -16,7 +16,7 @@ export function crc32(arr: Uint8Array | string): string {
     crc = (crc >>> 8) ^ temp;
   }
 
-  return numberToHex(crc ^ -1).padStart(8, "0");
+  return numberToHex(crc ^ -1);
 }
 
 export class Crc32Stream {
@@ -69,7 +69,7 @@ export class Crc32Stream {
 }
 
 export function numberToHex(n: number): string {
-  return (n >>> 0).toString(16);
+  return (n >>> 0).toString(16).padStart(8, "0");
 }
 
 export function hexToUint8Array(str: string): Uint8Array {
