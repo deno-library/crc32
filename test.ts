@@ -26,7 +26,8 @@ Deno.test("Crc32Stream", () => {
   const crc32Stream = new Crc32Stream();
   crc32Stream.append("d"); // 98dd4acc  === crc32("d")
   crc32Stream.append("e"); // 7d90298b  === crc32("de")
-  crc32Stream.append("n"); // 21f6953   === crc32("den")
+  crc32Stream.append("n"); // 021f6953  === crc32("den")
+  assertEquals(crc32Stream.crc32, "021f6953");
   assertEquals(crc32Stream.append("o"), crc32_deno);
   assertEquals(crc32Stream.crc32, crc32_deno);
   assertEquals(crc32Stream.crc32, crc32_deno);
@@ -35,7 +36,8 @@ Deno.test("Crc32Stream", () => {
 
   crc32Stream.append("d"); // 98dd4acc  === crc32("d")
   crc32Stream.append("e"); // 7d90298b  === crc32("de")
-  crc32Stream.append("n"); // 21f6953   === crc32("den")
+  crc32Stream.append("n"); // 021f6953  === crc32("den")
+  assertEquals(crc32Stream.crc32, "021f6953");
   assertEquals(crc32Stream.append("o"), crc32_deno);
   assertEquals(crc32Stream.crc32, crc32_deno);
   assertEquals(crc32Stream.crc32, crc32_deno);
