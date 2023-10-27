@@ -3,7 +3,7 @@ A TypeScript implementation of crc32, can be use for deno.
 
 > CRC means 'Cyclic Redundancy Check' and is a way to checksum data. It is a simple algorithm based on polynomials and is used in such projects as gzip.
 
-## Defination
+## Definition
 ```ts
 crc32(arr: Uint8Array | string): string;
 class Crc32Stream {
