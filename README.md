@@ -1,9 +1,11 @@
-# crc32  
+# crc32
+
 A TypeScript implementation of crc32, can be use for deno.
 
 > CRC means 'Cyclic Redundancy Check' and is a way to checksum data. It is a simple algorithm based on polynomials and is used in such projects as gzip.
 
 ## Definition
+
 ```ts
 crc32(arr: Uint8Array | string): string;
 class Crc32Stream {
@@ -15,11 +17,13 @@ hexToUint8Array(str: string): Uint8Array;
 uint8ArrayToHex(bytes: Uint8Array): string;
 ```
 
-## Usage  
+## Usage
 
-__basic__  
-```ts  
-import { crc32 } from "https://deno.land/x/crc32/mod.ts";
+**basic**
+
+```ts
+import { crc32 } from "jsr:@deno-library/crc32";
+//import { crc32 } from "https://deno.land/x/crc32/mod.ts";
 
 const str = "deno";
 const bytes = new TextEncoder().encode(str);
@@ -28,12 +32,14 @@ const crc32_deno = "fd6f8c63";
 
 assert(crc32(str) === crc32_deno);
 assert(crc32(bytes) === crc32_deno);
-```  
+```
 
-__Crc32Stream__  
+**Crc32Stream**  
 Used to calculate src32 value for large file
-```ts  
-import { Crc32Stream } from "https://deno.land/x/crc32/mod.ts";
+
+```ts
+import { crc32 } from "jsr:@deno-library/crc32";
+//import { Crc32Stream } from "https://deno.land/x/crc32/mod.ts";
 
 const crc32_deno = "fd6f8c63";
 
@@ -55,15 +61,12 @@ const val = crc32Stream.append("o");
 assertEquals(val, crc32_deno);
 assertEquals(crc32Stream.crc32, crc32_deno);
 assertEquals(crc32Stream.crc32, crc32_deno);
-```  
+```
 
 ## Other methods
 
-```ts  
-import {
-  hexToUint8Array,
-  uint8ArrayToHex,
-} from "https://deno.land/x/crc32/mod.ts";
+```ts
+import { hexToUint8Array, uint8ArrayToHex } from "jsr:@deno-library/crc32";
 
 const crc32_deno = "fd6f8c63";
 

@@ -2,7 +2,13 @@ export function crc32(arr: Uint8Array | string): string {
   if (typeof arr === "string") {
     arr = new TextEncoder().encode(arr);
   }
-  let crc = -1, i, j, l, temp, poly = 0xEDB88320;
+
+  let crc: number = -1,
+    i: number,
+    j: number,
+    l: number,
+    temp: number;
+  const poly: number = 0xEDB88320;
 
   for (i = 0, l = arr.length; i < l; i += 1) {
     temp = (crc ^ arr[i]) & 0xff;
@@ -10,7 +16,7 @@ export function crc32(arr: Uint8Array | string): string {
       if ((temp & 1) === 1) {
         temp = (temp >>> 1) ^ poly;
       } else {
-        temp = (temp >>> 1);
+        temp = temp >>> 1;
       }
     }
     crc = (crc >>> 8) ^ temp;
