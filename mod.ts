@@ -1,3 +1,9 @@
+/**
+ * Calculates the CRC32 checksum for the given array.
+ *
+ * @param arr The array to calculate the CRC32 for, can be a Uint8Array or a string.
+ * @returns The CRC32 checksum as a hexadecimal string.
+ */
 export function crc32(arr: Uint8Array | string): string {
   if (typeof arr === "string") {
     arr = new TextEncoder().encode(arr);
@@ -25,6 +31,9 @@ export function crc32(arr: Uint8Array | string): string {
   return numberToHex(crc ^ -1);
 }
 
+/**
+ * CRC32 stream processing class for incrementally calculating the CRC32 checksum.
+ */
 export class Crc32Stream {
   private bytes: number[] = [];
   private poly = 0xEDB88320;
@@ -36,10 +45,17 @@ export class Crc32Stream {
     this.reset();
   }
 
+  /**
+   * Gets the current CRC32 checksum.
+   * @returns The current CRC32 checksum as a hexadecimal string.
+   */
   get crc32(): string {
     return this.#crc32;
   }
 
+  /**
+   * Resets the state of the CRC32 stream.
+   */
   reset(): void {
     this.#crc32 = "";
     this.crc = 0 ^ -1;
@@ -57,6 +73,12 @@ export class Crc32Stream {
     }
   }
 
+  /**
+   * Appends new data to the CRC32 stream and updates the checksum.
+   *
+   * @param arr The data to append, can be a Uint8Array or a string.
+   * @returns The updated CRC32 checksum as a hexadecimal string.
+   */
   append(arr: Uint8Array | string): string {
     if (typeof arr === "string") {
       arr = this.encoder.encode(arr);
@@ -74,10 +96,23 @@ export class Crc32Stream {
   }
 }
 
+/**
+ * Converts a number to a hexadecimal string.
+ *
+ * @param n The number to convert.
+ * @returns The converted hexadecimal string.
+ */
 export function numberToHex(n: number): string {
   return (n >>> 0).toString(16).padStart(8, "0");
 }
 
+/**
+ * Converts a hexadecimal string to a Uint8Array.
+ *
+ * @param str The hexadecimal string to convert.
+ * @returns The converted Uint8Array.
+ * @throws Throws an error if the string is invalid.
+ */
 export function hexToUint8Array(str: string): Uint8Array {
   if (str.length === 0 || str.length % 2 !== 0) {
     throw new Error(`The string "${str}" is not valid hex.`);
@@ -87,6 +122,12 @@ export function hexToUint8Array(str: string): Uint8Array {
   );
 }
 
+/**
+ * Converts a Uint8Array to a hexadecimal string.
+ *
+ * @param bytes The Uint8Array to convert.
+ * @returns The converted hexadecimal string.
+ */
 export function uint8ArrayToHex(bytes: Uint8Array): string {
   return bytes.reduce(
     (str, byte) => str + byte.toString(16).padStart(2, "0"),
